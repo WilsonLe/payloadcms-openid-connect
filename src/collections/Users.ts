@@ -1,15 +1,14 @@
-import { CollectionConfig } from 'payload/types'
+import { CollectionConfig } from "payload/types";
+import { openIdConnect } from "../services/auth";
 
 const Users: CollectionConfig = {
-  slug: 'users',
-  auth: true,
-  admin: {
-    useAsTitle: 'email',
-  },
-  fields: [
-    // Email added by default
-    // Add more fields as needed
-  ],
-}
+	slug: "users",
+	auth: {
+		disableLocalStrategy: true,
+		strategies: [{ name: "openidconnect", strategy: openIdConnect }]
+	},
+	admin: { useAsTitle: "email" },
+	fields: []
+};
 
-export default Users
+export default Users;
